@@ -37,6 +37,7 @@ workspace "YKLib"
     defines { "PLATFORM_LINUX", "ARCH_X64" }
     system "Linux"
     architecture "x64"
+    buildoptions { "-std=c++20" }
 
   filter { "platforms:MacOS" }
     defines { "PLATFORM_MACOS", "ARCH_X64" }
@@ -59,3 +60,4 @@ workspace "YKLib"
     defines { "CONFIG_FINAL" }
 
 include "YKLib"
+include "Test"
