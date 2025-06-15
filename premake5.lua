@@ -1,4 +1,6 @@
 workspace "YKLib"
+  startproject "Test"
+
   configurations 
   { 
     "Debug",

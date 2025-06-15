@@ -79,3 +79,7 @@ build/
 # === Binary Folfers ===
 **/Bin/
 **/Bin-Int/
+
+# === Temporary Files ===
+*.ykprofile
+*.yklog

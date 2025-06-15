@@ -1,4 +1,5 @@
 project "YKLib"
+  location "."
   language "C++"
   cppdialect "C++latest"
   staticruntime "On"
@@ -35,8 +36,10 @@ project "YKLib"
     defines { "PLATFORM_LINUX", "ARCH_X64" }
     system "Linux"
     architecture "x64"
+    buildoptions { "-std=c++20" }
 
   filter { "platforms:MacOS" }
+    files { "Source/**.mm" }
     defines { "PLATFORM_MACOS", "ARCH_X64" }
     system "macosx"
     architecture "x64"
