@@ -38,7 +38,6 @@ void LoadAssets()
 
 void FaultyOperation() 
 {
-  YK_PROFILE_FUNCTION();
   int* ptr = nullptr;
   YK_ASSERT(ptr != nullptr, "Null pointer dereferenced in FaultyOperation");
 }
@@ -56,6 +55,12 @@ int main()
 
   YK_WARN("This is just a warning before something potentially risky.");
 
+  YK_PROFILE_END_SESSION();
+
+  globalTimer.Stop();
+  double total = globalTimer.ElapsedMilliseconds();
+  yk::LogInfo("Total runtime: " + std::to_string(total) + " ms");
+
   try 
   {
     FaultyOperation();
@@ -66,12 +71,6 @@ int main()
   }
 
   YK_INFO("Application finished.");
-
-  YK_PROFILE_END_SESSION();
-
-  globalTimer.Stop();
-  double total = globalTimer.ElapsedMilliseconds();
-  yk::LogInfo("Total runtime: " + std::to_string(total) + " ms");
 
   return 0;
 }
