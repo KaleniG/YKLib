@@ -2,7 +2,7 @@ workspace "YKLib"
   startproject "Test"
 
   configurations 
-  { 
+  {
     "Debug",
     "DebugDLL",
     "Release",
@@ -12,41 +12,40 @@ workspace "YKLib"
   }
 
   platforms 
-  { 
+  {
     "Win32",
     "Win64",
     "Linux",
     "MacOS"
   }
 
-  flags
-  {
-    "MultiProcessorCompile"
-  }
+  flags { "MultiProcessorCompile" }
 
+  -- Platform Filters
   filter { "platforms:Win32" }
-    defines { "PLATFORM_WINDOWS", "ARCH_X86", "_CRT_SECURE_NO_WARNINGS", "_SCL_SECURE_NO_WARNINGS", "NOMINMAX" }
     system "Windows"
-    systemversion "latest"
     architecture "x86"
+    systemversion "latest"
+    defines { "PLATFORM_WINDOWS", "ARCH_X86", "_CRT_SECURE_NO_WARNINGS", "_SCL_SECURE_NO_WARNINGS", "NOMINMAX" }
 
   filter { "platforms:Win64" }
-    defines { "PLATFORM_WINDOWS", "ARCH_X64", "_CRT_SECURE_NO_WARNINGS", "_SCL_SECURE_NO_WARNINGS", "NOMINMAX" }
     system "Windows"
-    systemversion "latest"
     architecture "x64"
+    systemversion "latest"
+    defines { "PLATFORM_WINDOWS", "ARCH_X64", "_CRT_SECURE_NO_WARNINGS", "_SCL_SECURE_NO_WARNINGS", "NOMINMAX" }
 
   filter { "platforms:Linux" }
-    defines { "PLATFORM_LINUX", "ARCH_X64" }
     system "Linux"
     architecture "x64"
+    defines { "PLATFORM_LINUX", "ARCH_X64" }
     buildoptions { "-std=c++20" }
 
   filter { "platforms:MacOS" }
-    defines { "PLATFORM_MACOS", "ARCH_X64" }
     system "macosx"
     architecture "x64"
+    defines { "PLATFORM_MACOS", "ARCH_X64" }
 
+  -- Configuration Filters
   filter { "configurations:Debug" }
     symbols "On"
     optimize "Off"
@@ -71,11 +70,20 @@ workspace "YKLib"
     symbols "Off"
     optimize "Full"
     defines { "CONFIG_FINAL" }
-  
+
   filter { "configurations:FinalDLL" }
     symbols "Off"
     optimize "Full"
     defines { "CONFIG_FINAL", "YK_USE_DYNAMIC_LIB" }
 
+  -- Reset filters
+  filter {}
+
+-- Include subprojects
+group "Core"
 include "YKLib"
+
+group "Impl"
 include "Test"
+
+group ""

@@ -38,7 +38,7 @@ project "YKLib"
     buildoptions { "-std=c++20" }
 
   filter { "platforms:MacOS" }
-    files { "Source/**.mm" }
+    --files { "Source/**.mm" }
     defines { "PLATFORM_MACOS", "ARCH_X64" }
     system "macosx"
     architecture "x64"
@@ -48,33 +48,39 @@ project "YKLib"
     optimize "Off"
     defines { "CONFIG_DEBUG" }
     kind "StaticLib"
+    runtime "Debug"
 
   filter { "configurations:DebugDLL" }
     symbols "On"
     optimize "Off"
     defines { "CONFIG_DEBUG", "YK_USE_DYNAMIC_LIB", "YK_BUILD_DYNAMIC_LIB" }
     kind "SharedLib"
+    runtime "Debug"
 
   filter { "configurations:Release" }
     symbols "Off"
     optimize "Full"
     defines { "CONFIG_RELEASE" }
     kind "StaticLib"
+    runtime "Release"
 
   filter { "configurations:ReleaseDLL" }
     symbols "Off"
     optimize "Full"
     defines { "CONFIG_RELEASE", "YK_USE_DYNAMIC_LIB", "YK_BUILD_DYNAMIC_LIB" }
     kind "SharedLib"
+    runtime "Release"
 
   filter { "configurations:Final" }
     symbols "Off"
     optimize "Full"
     defines { "CONFIG_FINAL" }
     kind "StaticLib"
+    runtime "Release"
 
   filter { "configurations:FinalDLL" }
     symbols "Off"
     optimize "Full"
     defines { "CONFIG_FINAL", "YK_USE_DYNAMIC_LIB", "YK_BUILD_DYNAMIC_LIB" }
     kind "SharedLib"
+    runtime "Release"

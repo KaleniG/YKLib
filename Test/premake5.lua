@@ -1,9 +1,9 @@
 project "Test"
   location "."
+  kind "ConsoleApp"
   language "C++"
   cppdialect "C++latest"
   staticruntime "On"
-  kind "ConsoleApp"
 
   targetdir "../Bin/"
   objdir "../Bin-Int/"
@@ -21,24 +21,20 @@ project "Test"
     "../YKLib/Source"
   }
 
-  links
-  {
-    "YKLib"
-  }
+  links { "YKLib" }
 
   filter { "platforms:MacOS" }
-    files { "Source/**.mm" }
+    --files { "Source/**.mm" }
 
-  filter "configurations:Final"
-    symbols "Off"
-    optimize "Full"
+  filter { "configurations:Debug*" }
+    runtime "Debug"
+
+  filter { "configurations:Release*" }
+    runtime "Release"
+
+  filter { "configurations:Final*" }
     kind "WindowedApp"
     entrypoint "mainCRTStartup"
-    defines { "CONFIG_FINAL" }
+    runtime "Release"
 
-  filter "configurations:FinalDLL"
-    symbols "Off"
-    optimize "Full"
-    kind "WindowedApp"
-    entrypoint "mainCRTStartup"
-    defines { "CONFIG_FINAL", "YK_USE_DYNAMIC_LIB" }
+  filter {}
