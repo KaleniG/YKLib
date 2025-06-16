@@ -39,23 +39,25 @@ USAGE:
 #include <cstdint>
 #include <chrono>
 
+#include "YKCore.h"
+
 namespace yk
 {
   /// @brief A manually controlled high-resolution timer.
-  class Timer 
+  YK_API class Timer
   {
   public:
     /// @brief Starts the timer.
-    void Start();
+    YK_API void Start();
     /// @brief Stops the timer.
-    void Stop();
+    YK_API void Stop();
 
     /// @brief Returns elapsed time in milliseconds.
-    double ElapsedMilliseconds() const;
+    YK_API double ElapsedMilliseconds() const;
     /// @brief Returns elapsed time in seconds.
-    double ElapsedSeconds() const;
+    YK_API double ElapsedSeconds() const;
     /// @brief Returns true if the timer is currently running.
-    bool IsRunning() const { return m_Running; }
+    YK_API bool IsRunning() const { return m_Running; }
 
   private:
     bool m_Running = false;
@@ -66,15 +68,15 @@ namespace yk
   /// @brief A scoped timer that automatically reports elapsed time.
   ///
   /// Inherit this class and implement OnFinish() to handle the timing result.
-  class ScopedTimer
+  YK_API class ScopedTimer
   {
   public:
-    ScopedTimer();
-    ~ScopedTimer();
+    YK_API ScopedTimer();
+    YK_API ~ScopedTimer();
 
   protected:
     /// @brief Called when the scope ends. Override to process timing result.
-    virtual void OnFinish(double elapsed_milliseconds) {}
+    YK_API virtual void OnFinish(double elapsed_milliseconds) {}
 
   private:
     std::chrono::high_resolution_clock::time_point m_Start;

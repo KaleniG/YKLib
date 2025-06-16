@@ -37,10 +37,12 @@ debugging slow code paths with minimal overhead.
 #include <string>
 #include <thread>
 
+#include "YKCore.h"
+
 namespace yk 
 {
   /// @brief Stores the result of a profiling measurement.
-  struct ProfileResult 
+  struct YK_API ProfileResult
   {
     const std::string Name;
     int64_t Start;
@@ -49,7 +51,7 @@ namespace yk
   };
 
   /// @brief Manages profiling session and output.
-  class Instrumentor 
+  class YK_API Instrumentor
   {
   public:
     ~Instrumentor();
@@ -77,7 +79,7 @@ namespace yk
   };
 
   /// @brief RAII-style timer that writes a profiling result upon destruction.
-  class InstrumentationTimer 
+  class YK_API InstrumentationTimer
   {
   public:
     explicit InstrumentationTimer(const std::string& name);

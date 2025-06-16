@@ -35,3 +35,10 @@ project "Test"
     kind "WindowedApp"
     entrypoint "mainCRTStartup"
     defines { "CONFIG_FINAL" }
+
+  filter "configurations:FinalDLL"
+    symbols "Off"
+    optimize "Full"
+    kind "WindowedApp"
+    entrypoint "mainCRTStartup"
+    defines { "CONFIG_FINAL", "YK_USE_DYNAMIC_LIB" }

@@ -88,7 +88,7 @@ namespace yk
 
     m_Result.Start = std::chrono::time_point_cast<std::chrono::microseconds>(m_StartTimePoint).time_since_epoch().count();
     m_Result.End = std::chrono::time_point_cast<std::chrono::microseconds>(endTimePoint).time_since_epoch().count();
-    m_Result.ThreadID = std::hash<std::thread::id>{}(std::this_thread::get_id());
+    m_Result.ThreadID = static_cast<uint32_t>(std::hash<std::thread::id>{}(std::this_thread::get_id()));
     Instrumentor::WriteProfile(m_Result);
 
     m_Stopped = true;

@@ -3,7 +3,6 @@ project "YKLib"
   language "C++"
   cppdialect "C++latest"
   staticruntime "On"
-  kind "StaticLib"
 
   targetdir "../Bin/"
   objdir "../Bin-Int/"
@@ -48,13 +47,34 @@ project "YKLib"
     symbols "On"
     optimize "Off"
     defines { "CONFIG_DEBUG" }
+    kind "StaticLib"
+
+  filter { "configurations:DebugDLL" }
+    symbols "On"
+    optimize "Off"
+    defines { "CONFIG_DEBUG", "YK_USE_DYNAMIC_LIB", "YK_BUILD_DYNAMIC_LIB" }
+    kind "SharedLib"
 
   filter { "configurations:Release" }
     symbols "Off"
     optimize "Full"
     defines { "CONFIG_RELEASE" }
+    kind "StaticLib"
+
+  filter { "configurations:ReleaseDLL" }
+    symbols "Off"
+    optimize "Full"
+    defines { "CONFIG_RELEASE", "YK_USE_DYNAMIC_LIB", "YK_BUILD_DYNAMIC_LIB" }
+    kind "SharedLib"
 
   filter { "configurations:Final" }
     symbols "Off"
     optimize "Full"
     defines { "CONFIG_FINAL" }
+    kind "StaticLib"
+
+  filter { "configurations:FinalDLL" }
+    symbols "Off"
+    optimize "Full"
+    defines { "CONFIG_FINAL", "YK_USE_DYNAMIC_LIB", "YK_BUILD_DYNAMIC_LIB" }
+    kind "SharedLib"

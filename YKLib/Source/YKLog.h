@@ -30,20 +30,22 @@ Debugging and runtime diagnostics with minimal dependencies.
 
 #include <string>
 
+#include "YKCore.h"
+
 namespace yk
 {
   /// @brief Logs an informational message to the console.
-  void LogInfo(const std::string& message);
+  YK_API void LogInfo(const std::string& message);
 
   /// @brief Logs a warning message to the console.
-  void LogWarning(const std::string& message);
+  YK_API void LogWarning(const std::string& message);
 
   /// @brief Logs an error message to the console.
-  void LogError(const std::string& message);
+  YK_API void LogError(const std::string& message);
 
   /// @brief Logs a fatal error message to the console.
-  void LogFatal(const std::string& message);
+  YK_API void LogFatal(const std::string& message);
 
   /// @brief Creates a platform specific message box displaying an error.
-  void LogRuntimeError(const std::string& message);
+  YK_API void LogRuntimeError(const std::string& message);
 }
