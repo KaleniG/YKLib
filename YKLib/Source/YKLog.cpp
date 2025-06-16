@@ -14,7 +14,7 @@
 
 namespace yk
 {
-#if defined(PLATFORM_WINDOWS)
+#if defined(PLATFORM_WINDOWS) && !defined(CONFIG_FINAL)
   static HANDLE s_ConsoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 #endif
 
@@ -24,6 +24,7 @@ namespace yk
   {
     static void OutputColoredMessage(const std::string& message, int32_t windowsColorCode, const char* posixColorCode)
     {
+#if !defined(CONFIG_FINAL)
       auto now = std::chrono::system_clock::now();
       std::time_t t = std::chrono::system_clock::to_time_t(now);
 
@@ -64,6 +65,7 @@ namespace yk
       SetConsoleTextAttribute(s_ConsoleHandle, 7);
 #else
       write(STDOUT_FILENO, finalMessage.c_str(), finalMessage.size());
+#endif
 #endif
     }
   }
