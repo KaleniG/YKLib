@@ -4,8 +4,8 @@ project "YKLib"
   cppdialect "C++latest"
   staticruntime "On"
 
-  targetdir "../Bin/"
-  objdir "../Bin-Int/"
+  targetdir "../Bin/%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+  objdir "../Bin-Int/%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
   files
   {
